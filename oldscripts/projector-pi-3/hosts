@@ -1,0 +1,18 @@
+127.0.0.1	localhost
+::1		localhost ip6-localhost ip6-loopback
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+127.0.1.1	projector-pi-3
+
+192.168.123.20  projector-pi-0
+192.168.123.21  projector-pi-1
+192.168.123.22  projector-pi-2
+192.168.123.23  projector-pi-3
+192.168.123.24  projector-pi-4
+192.168.123.25  projector-pi-5
+192.168.123.26  projector-pi-6
+192.168.123.27  projector-pi-7
+192.168.123.28  projector-pi-8
+192.168.123.29  projector-pi-9
+192.168.123.30  projector-pi-10
