@@ -2,7 +2,7 @@
 
 
 RASPROOT=/mnt
-BASEIMAGE="images/wifll-field.img.gz"
+BASEIMAGE="images/wifll-field-202309-patched-shrunk.img.zip"
 SEASONLOGO=FLLLogo2023.png
 
 case "$1" in
@@ -55,8 +55,9 @@ image=${projectorHostname}.img
 echo "Processing image $image"
 
 # cleanup any old image and recreate the new one
+echo "Creating initial image copy from master"
 rm -f $image
-gunzip < $BASEIMAGE > $image
+funzip $BASEIMAGE > $image
 
 # Create loopback device for the boot and root partition
 echo "Creating the loop back device"
@@ -130,6 +131,15 @@ do
     perl -i -p -e "s/SEASONLOGO/${SEASONLOGO}/" $RASPROOT/home/pi/projector-scripts/${i}
 done
 
+# Update the boot command line to resize the disk
+echo "Enabling auto resizing of the disk on boot"
+sudo perl -i -p -e 's|$| init=/usr/lib/raspi-config/init_resize.sh  sdhci\.debug_quirks2=4|' $RASPROOT/boot/cmdline.txt
+
+# Install the resize2fs_once script
+echo "Enabling resize2fs_once"
+sudo cp files/resize2fs_once $RASPROOT/etc/init.d
+sudo chmod 755 $RASPROOT/etc/init.d/resize2fs_once
+sudo chroot /mnt systemctl enable resize2fs_once
 
 # Unmount the image
 echo "Cleaning up the mounts and filesystems"
@@ -137,5 +147,6 @@ sudo umount /mnt/boot
 sudo umount /mnt
 sudo losetup -D
 
-#echo "Creating a zip file for the image"
-#gzip -9 $image
+echo "Creating a zip file for the image"
+zip -9 $image.zip $image
+rm $image

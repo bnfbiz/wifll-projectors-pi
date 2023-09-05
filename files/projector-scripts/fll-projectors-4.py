@@ -52,66 +52,84 @@ class pyscope :
         "Destructor to make sure pygame shuts down, etc."
 
 
+cameraUsername = 'admin'
+cameraPassword = 'wifll999'
 
-usernamepw = requests.auth.HTTPBasicAuth('admin', 'wifll999')
+usernamepw = requests.auth.HTTPBasicAuth(cameraUsername,cameraPassword)
 hostname = os.uname()[1]
 
 if hostname == 'projector-pi-1':
-    cam1IP = '192.168.123.31'
-    cam2IP = '192.168.123.32'
-    cam3IP = '192.168.123.33'
-    cam4IP = '192.168.123.34'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.31:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.32:554/cam/realmonitor?channel=1&subtype=0'
-    stream3 = 'rtsp://admin:wifll999@192.168.123.33:554/cam/realmonitor?channel=1&subtype=0'
-    stream4 = 'rtsp://admin:wifll999@192.168.123.34:554/cam/realmonitor?channel=1&subtype=0'
+    print("{} is setup for full screen only".format(hostname))
+    sys.exit(0)
 elif hostname == 'projector-pi-2':
-    cam1IP = '192.168.123.33'
-    cam2IP = '192.168.123.34'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.33:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.34:554/cam/realmonitor?channel=1&subtype=0'
+    print("{} is setup for full screen only".format(hostname))
+    sys.exit(0)
 elif hostname == 'projector-pi-3':
-    cam1IP = '192.168.123.31'
-    cam2IP = '192.168.123.32'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.31:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.32:554/cam/realmonitor?channel=1&subtype=0'
+    # To not undo the logic for flipping screens this will just put the same camera view back up on the switch screen
+    cam1IP = '192.168.123.32'
+    cam2IP = '192.168.123.31'
+    cam3IP = '192.168.123.32'
+    cam4IP = '192.168.123.31'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+    stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
+    stream4 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam4IP)
 elif hostname == 'projector-pi-4':
-    cam1IP = '192.168.123.33'
-    cam2IP = '192.168.123.34'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.33:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.34:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-7':
-    cam1IP = '192.168.123.35'
-    cam2IP = '192.168.123.36'
-    cam3IP = '192.168.123.37'
-    cam4IP = '192.168.123.38'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.35:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.36:554/cam/realmonitor?channel=1&subtype=0'
-    stream3 = 'rtsp://admin:wifll999@192.168.123.37:554/cam/realmonitor?channel=1&subtype=0'
-    stream4 = 'rtsp://admin:wifll999@192.168.123.38:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-8':
-    cam1IP = '192.168.123.35'
-    cam2IP = '192.168.123.36'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.35:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.36:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-9':
-    cam1IP = '192.168.123.33'
-    cam2IP = '192.168.123.34'
-    cam3IP = '192.168.123.37'
-    cam4IP = '192.168.123.38'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.33:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.34:554/cam/realmonitor?channel=1&subtype=0'
-    stream3 = 'rtsp://admin:wifll999@192.168.123.37:554/cam/realmonitor?channel=1&subtype=0'
-    stream4 = 'rtsp://admin:wifll999@192.168.123.38:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-10':
-    cam1IP = '192.168.123.31'
+    # To not undo the logic for flipping screens this will just put the same camera view back up on the switch screen
+    cam1IP = '192.168.123.34'
     cam2IP = '192.168.123.32'
-    cam3IP = '192.168.123.35'
-    cam4IP = '192.168.123.36'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.31:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.32:554/cam/realmonitor?channel=1&subtype=0'
-    stream3 = 'rtsp://admin:wifll999@192.168.123.35:554/cam/realmonitor?channel=1&subtype=0'
-    stream4 = 'rtsp://admin:wifll999@192.168.123.36:554/cam/realmonitor?channel=1&subtype=0'
+    cam3IP = '192.168.123.34'
+    cam4IP = '192.168.123.32'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+    stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
+    stream4 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam4IP)
+elif hostname == 'projector-pi-5':
+    print("{} is setup for full screen only".format(hostname))
+    sys.exit(0)
+elif hostname == 'projector-pi-6':
+    print("{} is setup for full screen only".format(hostname))
+    sys.exit(0)
+elif hostname == 'projector-pi-7':
+    # To not undo the logic for flipping screens this will just put the same camera view back up on the switch screen
+    cam1IP = '192.168.123.36'
+    cam2IP = '192.168.123.35'
+    cam3IP = '192.168.123.36'
+    cam4IP = '192.168.123.35'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+    stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
+    stream4 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam4IP)
+elif hostname == 'projector-pi-8':
+    # To not undo the logic for flipping screens this will just put the same camera view back up on the switch screen
+    cam1IP = '192.168.123.38'
+    cam2IP = '192.168.123.37'
+    cam3IP = '192.168.123.38'
+    cam4IP = '192.168.123.37'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+    stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
+    stream4 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam4IP)
+elif hostname == 'projector-pi-9':
+    # Single PI alternating between 4 tables each with split screen
+    cam1IP = '192.168.123.32'
+    cam2IP = '192.168.123.31'
+    cam3IP = '192.168.123.34'
+    cam4IP = '192.168.123.33'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+    stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
+    stream4 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam4IP)
+elif hostname == 'projector-pi-10':
+    # Single PI alternating between 4 tables each with split screen
+    cam1IP = '192.168.123.36'
+    cam2IP = '192.168.123.35'
+    cam3IP = '192.168.123.38'
+    cam4IP = '192.168.123.37'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+    stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
+    stream4 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam4IP)
 else:
     sys.exit()
 

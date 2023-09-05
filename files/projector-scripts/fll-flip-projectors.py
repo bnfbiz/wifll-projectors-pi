@@ -52,50 +52,44 @@ class pyscope :
         "Destructor to make sure pygame shuts down, etc."
 
 
+cameraUsername = 'admin'
+cameraPassword = 'wifll999'
 
-usernamepw = requests.auth.HTTPBasicAuth('admin', 'wifll999')
+usernamepw = requests.auth.HTTPBasicAuth(cameraUsername, cameraPassword)
 hostname = os.uname()[1]
 
 if hostname == 'projector-pi-1':
-    cam1IP = '192.168.123.31'
-    cam2IP = '192.168.123.32'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.31:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.32:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-2':
-    cam1IP = '192.168.123.34'
-    cam2IP = '192.168.123.32'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.34:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.32:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-3':
-    cam1IP = '192.168.123.35'
-    cam2IP = '192.168.123.37'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.35:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.37:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-9':
     cam1IP = '192.168.123.32'
     cam2IP = '192.168.123.34'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.32:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.34:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-4':
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+elif hostname == 'projector-pi-2':
     cam1IP = '192.168.123.31'
     cam2IP = '192.168.123.33'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.31:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.33:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-7':
-    cam1IP = '192.168.123.33'
-    cam2IP = '192.168.123.31'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.33:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.31:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-8':
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+elif hostname == 'projector-pi-3':
+    print("{} is setup for split screen only".format(hostname))
+    sys.exit(0)
+elif hostname == 'projector-pi-4':
+    print("{} is setup for split screen only".format(hostname))
+    sys.exit(0)
+elif hostname == 'projector-pi-5':
     cam1IP = '192.168.123.36'
     cam2IP = '192.168.123.38'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.36:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.38:554/cam/realmonitor?channel=1&subtype=0'
-elif hostname == 'projector-pi-10':
-    cam1IP = '192.168.123.37'
-    cam2IP = '192.168.123.36'
-    stream1 = 'rtsp://admin:wifll999@192.168.123.37:554/cam/realmonitor?channel=1&subtype=0'
-    stream2 = 'rtsp://admin:wifll999@192.168.123.36:554/cam/realmonitor?channel=1&subtype=0'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+elif hostname == 'projector-pi-6':
+    cam1IP = '192.168.123.35'
+    cam2IP = '192.168.123.37'
+    stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
+    stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
+elif hostname == 'projector-pi-7':
+    print("{} is setup for split screen only".format(hostname))
+    sys.exit(0)
+elif hostname == 'projector-pi-8':
+    print("{} is setup for split screen only".format(hostname))
+    sys.exit(0)
 else:
     sys.exit()
 
