@@ -77,9 +77,9 @@ elif hostname == 'projector-pi-3':
 elif hostname == 'projector-pi-4':
     # To not undo the logic for flipping screens this will just put the same camera view back up on the switch screen
     cam1IP = '192.168.123.34'
-    cam2IP = '192.168.123.32'
+    cam2IP = '192.168.123.33'
     cam3IP = '192.168.123.34'
-    cam4IP = '192.168.123.32'
+    cam4IP = '192.168.123.33'
     stream1 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam1IP)
     stream2 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam2IP)
     stream3 = 'rtsp://{}:{}@{}:554/cam/realmonitor?channel=1&subtype=0'.format(cameraUsername, cameraPassword, cam3IP)
